@@ -6,7 +6,7 @@ import media_routes from "./routes/media_routes.js";
 import events_routes from "./routes/events_routes.js";
 
 const app = express();
-app.use(cors({ origin: "http://localhost:4200" }));
+app.use(cors({ origin: "https://cefedapi-arpx.onrender.com" }));
 app.use(express.json()); //interprete los objetos enviados como json
 
 // Servir archivos estáticos de las carpetas de imágenes y videos
