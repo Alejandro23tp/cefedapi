@@ -8,9 +8,15 @@ const router = express.Router();
 // Configuración de multer para las imágenes de eventos
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/images/events");
+    // Asegurarse de que el directorio exista en el servidor
+    const dir = path.join(__dirname, "../../uploads/images/events");
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true }); // Crear directorios si no existen
+    }
+    cb(null, dir);
   },
   filename: (req, file, cb) => {
+    // Generar un nombre único para la imagen
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
@@ -36,10 +42,8 @@ let events = [];
 // Crear un evento
 router.post("/events", upload.single("image"), (req, res) => {
   try {
-    // Extraer datos directamente de req.body
     const { title, date, time, location, category, description } = req.body;
 
-    // Crear un nuevo evento
     const newEvent = {
       id: Date.now(),
       title,
@@ -120,8 +124,9 @@ router.delete("/events/:id", (req, res) => {
     return res.status(404).json({ message: "Evento no encontrado" });
   }
 
-  // Eliminar la imagen asociada si existe
   const event = events[eventIndex];
+
+  // Eliminar la imagen asociada si existe
   if (event.image) {
     const imagePath = path.resolve(event.image.substr(1));
     if (fs.existsSync(imagePath)) {
@@ -129,6 +134,7 @@ router.delete("/events/:id", (req, res) => {
     }
   }
 
+  // Eliminar el evento
   events.splice(eventIndex, 1);
   res.status(200).json({ message: "Evento eliminado exitosamente" });
 });
