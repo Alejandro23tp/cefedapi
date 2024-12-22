@@ -1,0 +1,1 @@
+Se creaba la carpeta de eventos para almacenar las imágenes de los eventos.
