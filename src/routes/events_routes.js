@@ -2,13 +2,18 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { fileURLToPath } from 'url'; // Importar fileURLToPath
 
 const router = express.Router();
+
+// Obtener __dirname con import.meta.url
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuración de multer para las imágenes de eventos
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Asegurarse de que el directorio exista en el servidor
+    // Usamos __dirname para obtener la ruta correcta
     const dir = path.join(__dirname, "../../uploads/images/events");
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true }); // Crear directorios si no existen
