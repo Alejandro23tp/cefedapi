@@ -4,6 +4,9 @@ import path from "path";
 import mediaRoutes from "./routes/media_routes.js";
 import eventsRoutes from "./routes/events_routes.js";  // Asegúrate de importar correctamente las rutas de eventos
 
+import contactRoutes from "./routes/contact_routes.js"; // Importa las rutas de contacto
+
+
 const app = express();
 
 // Configuración de CORS para permitir múltiples orígenes
@@ -31,9 +34,15 @@ app.get("/", (req, res) => {
   res.send("Hola desde el servidor");
 });
 
+// Agrega las rutas al servidor
+app.use("/api", contactRoutes);
+
+
 // Middleware para manejar rutas no encontradas
 app.use((req, res, next) => {
   res.status(404).json({ message: "Página no encontrada" });
 });
+
+
 
 export default app;
