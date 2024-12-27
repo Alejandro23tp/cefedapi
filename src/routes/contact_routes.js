@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   secure: false, // true para puerto 465, false para otros puertos
   auth: {
     user: "iglesiacefed@gmail.com", // Tu correo
-    pass: "tu-contraseña-de-aplicación", // Contraseña de aplicación
+    pass: "29juliofeenDios", // Contraseña de aplicación
   },
 });
 
