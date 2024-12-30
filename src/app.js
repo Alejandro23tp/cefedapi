@@ -3,8 +3,7 @@ import cors from "cors";
 import path from "path";
 import mediaRoutes from "./routes/media_routes.js";
 import eventsRoutes from "./routes/events_routes.js";  // Asegúrate de importar correctamente las rutas de eventos
-
-import contactRoutes from "./routes/contact_routes.js"; // Importa las rutas de contacto
+import telegramRoutes from "./routes/telegram_routes.js";
 
 
 const app = express();
@@ -35,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 // Agrega las rutas al servidor
-app.use("/api", contactRoutes);
+app.use("/api", telegramRoutes);
 
 
 // Middleware para manejar rutas no encontradas
