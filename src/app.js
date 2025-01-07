@@ -10,7 +10,7 @@ const app = express();
 
 // Configuración de CORS para permitir múltiples orígenes
 const corsOptions = {
-  origin: ["http://localhost:4200", "https://cefedapi-arpx.onrender.com.","http://localhost:8000", "https://cefed.vercel.app"],  // Añadir ambos orígenes aquí
+  origin: [ "https://cefedapi-arpx.onrender.com.", "https://cefed.vercel.app", "https://iglesiacefed.com"],  // Añadir ambos orígenes aquí "http://localhost:8000" "http://localhost:4200",
   methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
   allowedHeaders: ["Content-Type", "Authorization"],  // Encabezados permitidos
 };
